@@ -5,9 +5,9 @@
 		"description": "local file reader linked service",
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "c:\\transfer\\2015",
+			"host": "c:\\transfer\\",
 			"userId": "szbarany",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4NDk5NWY2MS1iNzYyLTQ0MjQtYTVjYy1jYzE3NDU2MDk2ZTIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhMjQxYmI3ZS02ZTcxLTQ1MzMtOWI3Yy1mNzBlYWJjYTQ4MDEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "localselfhostedir",
