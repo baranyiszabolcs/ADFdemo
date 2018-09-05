@@ -5,6 +5,11 @@
 			"referenceName": "localFileLs",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"fileid": {
+				"type": "String"
+			}
+		},
 		"type": "FileShare",
 		"structure": [
 			{
