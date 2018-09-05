@@ -1,0 +1,15 @@
+{
+	"name": "AzureDatabricksdemoLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Databricks linked service",
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://northeurope.azuredatabricks.net",
+			"newClusterNodeType": "Standard_F4s",
+			"newClusterNumOfWorker": "1",
+			"newClusterVersion": "4.2.x-scala2.11",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkJTWkRFTU9ERkdBXzc3NTFlYTc0LTVmZjUtNDM1MC1iZTExLTBlNWQ1MDYyZWQ5YyINCn0="
+		}
+	}
+}
