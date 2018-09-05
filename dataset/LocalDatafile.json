@@ -1,6 +1,10 @@
 {
 	"name": "LocalDatafile",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "localFileLs",
+			"type": "LinkedServiceReference"
+		},
 		"type": "FileShare",
 		"typeProperties": {
 			"format": {
