@@ -13,13 +13,23 @@
 					"secureInput": false
 				},
 				"typeProperties": {
+					"source": {
+						"type": "FileSystemSource",
+						"recursive": true
+					},
 					"enableStaging": false,
 					"dataIntegrationUnits": 0
 				},
 				"inputs": [
 					{
 						"referenceName": "LocalDatafile",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileid": {
+								"value": "@pipeline().parameters.fileId",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
