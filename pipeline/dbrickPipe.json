@@ -32,6 +32,10 @@
 			"outputfilename": {
 				"type": "String",
 				"defaultValue": "ofile"
+			},
+			"infileid": {
+				"type": "String",
+				"defaultValue": "11"
 			}
 		}
 	}
