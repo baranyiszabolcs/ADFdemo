@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStrOnpremStage'"
 		},
+		"AzureDatabricksdemoLS_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksdemoLS'"
+		},
 		"localFileLs_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'localFileLs'"
@@ -101,6 +105,52 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/LocalDatafile')]",
 				"[concat(variables('factoryId'), '/datasets/AzureBlobTarget')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dbrickPipe')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "dbrickcopyPYNB",
+						"description": "python notebook",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/sntdemo/dbrickcopy",
+							"baseParameters": {
+								"inputfile": {
+									"value": "@pipeline().parameters.outputfilename",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricksdemoLS",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"outputfilename": {
+						"type": "String",
+						"defaultValue": "ofile"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricksdemoLS')]"
 			]
 		},
 		{
@@ -269,6 +319,27 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/localselfhostedir')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricksdemoLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Databricks linked service",
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://northeurope.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricksdemoLS_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_F4s",
+					"newClusterNumOfWorker": "1",
+					"newClusterVersion": "4.2.x-scala2.11"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/localFileLs')]",

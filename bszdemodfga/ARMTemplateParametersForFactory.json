@@ -8,6 +8,9 @@
 		"AzureBlobStrOnpremStage_connectionString": {
 			"value": ""
 		},
+		"AzureDatabricksdemoLS_accessToken": {
+			"value": ""
+		},
 		"localFileLs_password": {
 			"value": ""
 		},
