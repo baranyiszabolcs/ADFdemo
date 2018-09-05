@@ -1,0 +1,7 @@
+{
+	"name": "localselfhostedir",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Self hosted IR download to local"
+	}
+}
