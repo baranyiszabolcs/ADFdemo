@@ -68,6 +68,10 @@
 				"skipLineCount": 0,
 				"firstRowAsHeader": false
 			},
+			"fileName": {
+				"value": "@concat('QID341957_20170426_40216_',dataset().fileid,'.txt')",
+				"type": "Expression"
+			},
 			"folderPath": "2015"
 		}
 	}
