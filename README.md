@@ -1,2 +1,3 @@
 # ADFdemo
-Azure DataFactory demo 1
+Azure DataFactory demo 
+Copy onprem data to azure  using self hosted IR
