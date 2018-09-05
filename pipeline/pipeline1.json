@@ -1,0 +1,29 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "dbrickcopyPYNB",
+				"description": "python notebook",
+				"type": "DatabricksNotebook",
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"typeProperties": {
+					"notebookPath": "/sntdemo/dbrickcopy",
+					"baseParameters": {
+						"inputfile": "f11"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksdemoLS",
+					"type": "LinkedServiceReference"
+				}
+			}
+		]
+	}
+}
