@@ -127,7 +127,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/sntdemo/dbrickcopy",
+							"notebookPath": "/Users/szbarany@microsoft.com/sntdemo/dbrickcopy",
 							"baseParameters": {
 								"inputfile": {
 									"value": "@pipeline().parameters.outputfilename",
