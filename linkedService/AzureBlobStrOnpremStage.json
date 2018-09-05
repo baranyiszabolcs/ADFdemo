@@ -1,0 +1,16 @@
+{
+	"name": "AzureBlobStrOnpremStage",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "stage for oprem data",
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=bszadfdemostore;",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1OGM4YjJmMy0xMmE3LTRjYmUtOGUxMS05ZTQ0YzBmMDk5YjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "localselfhostedir",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
