@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "dbrickPipe",
 	"properties": {
 		"activities": [
 			{
@@ -16,7 +16,10 @@
 				"typeProperties": {
 					"notebookPath": "/sntdemo/dbrickcopy",
 					"baseParameters": {
-						"inputfile": "f11"
+						"inputfile": {
+							"value": "@pipeline().parameters.outputfilename",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
@@ -24,6 +27,12 @@
 					"type": "LinkedServiceReference"
 				}
 			}
-		]
+		],
+		"parameters": {
+			"outputfilename": {
+				"type": "String",
+				"defaultValue": "ofile"
+			}
+		}
 	}
 }
