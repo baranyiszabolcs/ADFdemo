@@ -23,6 +23,12 @@
 					}
 				]
 			}
-		]
+		],
+		"parameters": {
+			"fileId": {
+				"type": "String",
+				"defaultValue": "1"
+			}
+		}
 	}
 }
