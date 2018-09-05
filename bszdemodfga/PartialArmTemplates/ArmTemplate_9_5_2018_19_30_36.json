@@ -6,34 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory Name",
 			"defaultValue": "bszdemodfga"
-		},
-		"AzureBlobStrOnpremStage_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStrOnpremStage'"
-		},
-		"localFileLs_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'localFileLs'"
-		},
-		"AzureBlobTarget_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "stagefile.txt"
-		},
-		"AzureBlobTarget_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "onpremcopy"
-		},
-		"LocalDatafile_properties_typeProperties_fileName": {
-			"type": "string",
-			"defaultValue": "@concat('QID341957_20170426_40216_',dataset().fileid,'.txt')"
-		},
-		"LocalDatafile_properties_typeProperties_folderPath": {
-			"type": "string",
-			"defaultValue": "2015"
-		},
-		"localFileLs_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "szbarany"
 		}
 	},
 	"variables": {
@@ -49,7 +21,6 @@
 					{
 						"name": "CopyOnpremtoBlob",
 						"type": "Copy",
-						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -57,7 +28,6 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
 						"typeProperties": {
 							"source": {
 								"type": "FileSystemSource",
@@ -84,8 +54,7 @@
 						"outputs": [
 							{
 								"referenceName": "AzureBlobTarget",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -93,10 +62,9 @@
 				"parameters": {
 					"fileId": {
 						"type": "String",
-						"defaultValue": "10"
+						"defaultValue": "1"
 					}
-				},
-				"annotations": []
+				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/LocalDatafile')]",
@@ -113,7 +81,6 @@
 					"referenceName": "AzureBlobStrOnpremStage",
 					"type": "LinkedServiceReference"
 				},
-				"annotations": [],
 				"type": "AzureBlob",
 				"typeProperties": {
 					"format": {
@@ -125,13 +92,10 @@
 						"skipLineCount": 0,
 						"firstRowAsHeader": true
 					},
-					"fileName": "[parameters('AzureBlobTarget_properties_typeProperties_fileName')]",
-					"folderPath": "[parameters('AzureBlobTarget_properties_typeProperties_folderPath')]"
+					"fileName": "stagefile.txt",
+					"folderPath": "onpremcopy"
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStrOnpremStage')]"
-			]
+			}
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LocalDatafile')]",
@@ -147,7 +111,6 @@
 						"type": "String"
 					}
 				},
-				"annotations": [],
 				"type": "FileShare",
 				"structure": [
 					{
@@ -207,71 +170,12 @@
 						"firstRowAsHeader": false
 					},
 					"fileName": {
-						"value": "[parameters('LocalDatafile_properties_typeProperties_fileName')]",
+						"value": "@concat('QID341957_20170426_40216_',dataset().fileid,'.txt')",
 						"type": "Expression"
 					},
-					"folderPath": "[parameters('LocalDatafile_properties_typeProperties_folderPath')]"
+					"folderPath": "2015"
 				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/localFileLs')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStrOnpremStage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "stage for oprem data",
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStrOnpremStage_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "localselfhostedir",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/localselfhostedir')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/localFileLs')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "local file reader linked service",
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "c:\\transfer\\",
-					"userId": "[parameters('localFileLs_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('localFileLs_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "localselfhostedir",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/localselfhostedir')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/localselfhostedir')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "Self hosted IR download to local",
-				"typeProperties": {}
-			},
-			"dependsOn": []
+			}
 		}
 	]
 }

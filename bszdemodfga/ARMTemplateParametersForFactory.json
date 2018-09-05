@@ -1,1 +1,30 @@
-{}
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "bszdemodfga"
+		},
+		"AzureBlobStrOnpremStage_connectionString": {
+			"value": ""
+		},
+		"localFileLs_password": {
+			"value": ""
+		},
+		"AzureBlobTarget_properties_typeProperties_fileName": {
+			"value": "stagefile.txt"
+		},
+		"AzureBlobTarget_properties_typeProperties_folderPath": {
+			"value": "onpremcopy"
+		},
+		"LocalDatafile_properties_typeProperties_fileName": {
+			"value": "@concat('QID341957_20170426_40216_',dataset().fileid,'.txt')"
+		},
+		"LocalDatafile_properties_typeProperties_folderPath": {
+			"value": "2015"
+		},
+		"localFileLs_properties_typeProperties_userId": {
+			"value": "szbarany"
+		}
+	}
+}
