@@ -1,0 +1,15 @@
+{
+	"name": "AzureBlobTarget",
+	"properties": {
+		"description": "copy data rows to lob as temp",
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStrOnpremStage",
+			"type": "LinkedServiceReference"
+		},
+		"type": "AzureBlob",
+		"typeProperties": {
+			"fileName": "stagefile.txt",
+			"folderPath": "onpremcopy"
+		}
+	}
+}
