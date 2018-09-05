@@ -38,6 +38,10 @@
 		"localFileLs_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "szbarany"
+		},
+		"triggertv_properties_pipeline_parameters_outputfilename": {
+			"type": "string",
+			"defaultValue": "ofilex"
 		}
 	},
 	"variables": {
@@ -364,6 +368,39 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/localselfhostedir')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggertv')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "tumbling vindow of databrcks",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipeline": {
+					"pipelineReference": {
+						"referenceName": "dbrickPipe",
+						"type": "PipelineReference"
+					},
+					"parameters": {
+						"outputfilename": "[parameters('triggertv_properties_pipeline_parameters_outputfilename')]"
+					}
+				},
+				"type": "TumblingWindowTrigger",
+				"typeProperties": {
+					"frequency": "Hour",
+					"interval": 3,
+					"startTime": "2018-09-05T20:45:00.000Z",
+					"delay": "00:00:00",
+					"maxConcurrency": 50,
+					"retryPolicy": {
+						"intervalInSeconds": 30
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/dbrickPipe')]"
 			]
 		},
 		{
