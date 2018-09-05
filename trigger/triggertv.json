@@ -3,6 +3,15 @@
 	"properties": {
 		"description": "tumbling vindow of databrcks",
 		"runtimeState": "Started",
+		"pipeline": {
+			"pipelineReference": {
+				"referenceName": "dbrickPipe",
+				"type": "PipelineReference"
+			},
+			"parameters": {
+				"outputfilename": "ofilex"
+			}
+		},
 		"type": "TumblingWindowTrigger",
 		"typeProperties": {
 			"frequency": "Hour",
