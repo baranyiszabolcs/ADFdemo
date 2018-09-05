@@ -42,6 +42,17 @@
 		"triggertv_properties_pipeline_parameters_outputfilename": {
 			"type": "string",
 			"defaultValue": "ofilex"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "bszdfdemosql.database.windows.net"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "szbarany"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
 		}
 	},
 	"variables": {
@@ -390,7 +401,7 @@
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
 					"frequency": "Hour",
-					"interval": 3,
+					"interval": 2,
 					"startTime": "2018-09-05T20:45:00.000Z",
 					"delay": "00:00:00",
 					"maxConcurrency": 50,
@@ -402,6 +413,36 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/dbrickPipe')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/bszssis')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "West Europe",
+						"nodeSize": "Standard_D1_v2",
+						"numberOfNodes": 1,
+						"maxParallelExecutionsPerNode": 1
+					},
+					"ssisProperties": {
+						"catalogInfo": {
+							"catalogServerEndpoint": "[parameters('bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]",
+							"catalogAdminUserName": "[parameters('bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]",
+							"catalogAdminPassword": {
+								"type": "SecureString",
+								"value": "[parameters('bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+							},
+							"catalogPricingTier": "S0"
+						},
+						"edition": "Standard",
+						"licenseType": "LicenseIncluded"
+					}
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/localselfhostedir')]",

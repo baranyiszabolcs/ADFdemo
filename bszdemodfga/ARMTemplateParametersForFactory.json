@@ -31,6 +31,15 @@
 		},
 		"triggertv_properties_pipeline_parameters_outputfilename": {
 			"value": "ofilex"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "bszdfdemosql.database.windows.net"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "szbarany"
+		},
+		"bszssis_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
 		}
 	}
 }
