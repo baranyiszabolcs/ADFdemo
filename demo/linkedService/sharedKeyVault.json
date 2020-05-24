@@ -1,0 +1,10 @@
+{
+	"name": "sharedKeyVault",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://bszt-sharedsvcs-kv.vault.azure.net/"
+		}
+	}
+}
