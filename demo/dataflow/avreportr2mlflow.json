@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "avreportr2mlflow",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
