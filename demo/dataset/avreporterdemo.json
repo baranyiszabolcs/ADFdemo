@@ -1,0 +1,12 @@
+{
+	"name": "avreporterdemo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "avreportrdb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
